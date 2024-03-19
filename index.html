@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #F6CED8; /* Cambia el color de fondo a un rosa suave */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+        .botones {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #E0E0E0; /* Cambia el color de fondo a un gris suave */
+            color: black;
+            border: none;
+            padding: 15px 27px; /* Aumenta el tamaño del padding en un 10% */
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            font-family: "Times New Roman", Times, serif;
+            font-weight: bold;
+            font-size: 110%; /* Aumenta el tamaño de la fuente en un 10% */
+        }
+        .posicion1 {
+            top: 100px; /* Ajuste para mover el botón "Sí" un 30% más abajo */
+            right: 60px;
+        }
+        .posicion2 {
+            bottom: -100px; /* Ajuste para mover el botón "No" un 30% más abajo */
+            left: 85px;
+        }
+        .posicion3 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .posicion5 {
+            bottom: 175px;
+            right: 50px;
+        }
+        .posicion6 {
+            top: 200px;
+            left: 200px;
+        }
+        .posicion4{
+            top: -244px;
+            right:422px;
+        }
+        .imagen {
+            width: 400px; /* Define el ancho deseado de la imagen */
+            height: auto; /* Altura ajustada automáticamente */
+            display: block; /* Para centrar la imagen */
+            margin: 0 auto; /* Para centrar la imagen */
+        }
+
+        @media screen and (max-width: 768px) {
+            /* Estilos para dispositivos con un ancho máximo de 768px (por ejemplo, tabletas y teléfonos en orientación horizontal) */
+            .imagen {
+                width: 80%; /* Redimensiona la imagen al 80% del ancho de la pantalla */
+            }
+            .botones {
+                flex-direction: column; /* Cambia la dirección de los botones a vertical */
+            }
+            .botones button {
+                margin: 10px 0; /* Aumenta el margen vertical entre los botones */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="imagen-container">
+        <img class="imagen" src="HACER MUÑECO.jpg" alt="Imagen"> <!-- Reemplaza "RUTA_DE_LA_IMAGEN_NUEVA.jpg" con la ruta de tu nueva imagen -->
+    </div>
+    <div class="botones">
+        <button class="posicion1" id="botonSi" onclick="mostrarNuevaImagen()">Sí</button>
+        <button class="posicion2" id="botonNo" onclick="rechazarSoldado()">No</button>
+    </div>
+
+    <script>
+        const clasesPosiciones = ['posicion1', 'posicion2', 'posicion3', 'posicion4', 'posicion5', 'posicion6'];
+        let posicionActual = 'posicion2'; // Posición inicial
+
+        function rechazarSoldado() {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * clasesPosiciones.length);
+            } while (clasesPosiciones[randomIndex] === posicionActual); // Evitar la misma posición
+
+            const botonNo = document.getElementById('botonNo');
+            botonNo.className = clasesPosiciones[randomIndex];
+            posicionActual = clasesPosiciones[randomIndex]; // Actualizar la posición actual
+            
+            // Mensaje de propuesta realizada
+            console.log("Propuesta realizada");
+        }
+
+        function mostrarNuevaImagen() {
+            const imagenContainer = document.querySelector('.imagen-container');
+            imagenContainer.innerHTML = '<img class="imagen" src="HOY TOCA.jpg" alt="Nueva Imagen">'; // Cambia a la nueva imagen
+            const botones = document.querySelector('.botones');
+            botones.style.display = 'none'; // Oculta los botones
+        }
+    </script>
+</body>
+</html>
+
